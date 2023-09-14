@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #6f6df4,
+        #4c46f5
+    );
+}
+.container{
+    background-color: #ffffff;
+    width: 70%;
+    min-width: 420px;
+    padding: 35px 45px;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 10px;
+    box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
+}
+
+.input-box {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1.1rem;
+}
+
+.input-box input {
+   padding: 12px 15px; /* Aumenta el padding para hacer el input más grande */
+   font-size: 0.8rem;
+}
+
+.input-box input:hover {
+   background-color: rgba(211, 211, 248, 0.3);
+}
+
+.input-box input:focus-visible {
+   outline: 1px solid #6c63ff;
+}
+
+.input-box label,
+.gender-title h6 {
+   font-size: 0.80rem;
+   font-weight: 600;
+   color: #000000c0;
+}
+
+/* Agrega estilos para el select */
+.input-box select {
+   padding: 11px 10px;
+   border-radius: 5px;
+   border: 1.2px solid #c4cae0;
+   margin-top: 5px;
+}
+
+/* Estilo para el select en estado hover */
+.input-box select:hover {
+   background-color: rgba(211, 211, 248, 0.3);
+}
+
+/* Estilo para el select enfocado */
+.input-box select:focus {
+   background-color: rgba(255, 255, 255, 0.4);
+   outline: none;
+   border-color: #c4cae0; /* Cambia el color del borde al enfocar */
+}
+
+h1{
+    font-size: 30px;
+    text-align: center;
+    color: #1c093c;
+}
+p{
+    position: relative;
+    margin: 0.75em;
+    width: 100%;
+    text-align: center;
+    color: #606060;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+form{
+    width: 100%;
+    position: relative;
+    margin: 30px auto 0 auto;
+}
+
+.row{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-gap: 20px 30px;
+    margin-bottom: 30px;
+}
+
+.row-numbers {
+   display: flex;
+   margin-bottom: 1.1rem;
+   align-items: flex-start;
+   margin-bottom: 30px;
+}
+
+.column.input-box {
+   flex: 1; /* Los input ocuparán el mismo espacio en la fila */
+   margin: 0 10px; /* Espaciado horizontal entre los input */
+}
+
+/* Estilo para el input en estado hover */
+.column.input-box input:hover {
+   background-color: rgba(211, 211, 248, 0.3);
+}
+
+/* Estilo para el input enfocado */
+.column.input-box input:focus-visible {
+   outline: 1px solid #6c63ff;
+}
+
+/* Estilo para el label */
+.column.input-box label {
+   font-size: 0.80rem;
+   font-weight: 600;
+   color: #000000c0;
+}
+
+label{
+    color: #1c093c;
+    font-size: 14px;
+}
+textarea,
+input{
+    width: 100%;
+    font-weight: 400;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1.2px solid #c4cae0;
+    margin-top: 5px;
+}
+textarea{
+    resize: none;
+}
+textarea:focus,
+input:focus{
+    outline: none;
+    border-color: #6f6df4;
+}
+button{
+    border: none;
+    padding: 10px 20px;
+    background: linear-gradient(
+        130deg,
+        #6f6df4,
+        #4c46f5
+    );
+    color: #ffffff;
+    border-radius: 3px;
+}
+
+.continue-button {
+   text-align: center;
+}
+
+.continue-button button {
+   width: 40%;
+   margin-top: 1rem;
+   border: none;
+   padding: 0.62rem;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 0.99rem;
+   font-weight: 500;
+   color: #fff;
+}
+
+.continue-button button:hover {
+   background-color: #ff2600f1;
+}
+
+.formulario .error {
+	color: #e92b2d;
+	font-weight: 600;
+	font-size: 12px;
+   margin-top: 0.5rem;
+}
+
+
+
+
