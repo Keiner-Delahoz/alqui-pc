@@ -1,30 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body{
-    height: 100vh;
-    background: linear-gradient(
-        135deg,
-        #6f6df4,
-        #4c46f5
-    );
-}
 .container{
-    background-color: #ffffff;
-    width: 70%;
-    min-width: 420px;
-    padding: 35px 45px;
-    transform: translate(-50%,-50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    border-radius: 10px;
-    box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
+   background-color: #ffffff;
+   width: 70%;
+   min-width: 420px;
+   padding: 35px 45px;
+   transform: translate(-50%,-50%);
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   border-radius: 10px;
+   box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
 }
 
 .input-box {
@@ -152,17 +136,6 @@ input:focus{
     outline: none;
     border-color: #6f6df4;
 }
-button{
-    border: none;
-    padding: 10px 20px;
-    background: linear-gradient(
-        130deg,
-        #6f6df4,
-        #4c46f5
-    );
-    color: #ffffff;
-    border-radius: 3px;
-}
 
 .continue-button {
    text-align: center;
@@ -177,6 +150,7 @@ button{
    cursor: pointer;
    font-size: 0.99rem;
    font-weight: 500;
+   background-color: #6f6df4;
    color: #fff;
 }
 

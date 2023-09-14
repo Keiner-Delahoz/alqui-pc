@@ -1,39 +1,88 @@
-// Invoice.js
-// import React from 'react';
+import { useLocation, Link } from "react-router-dom";
+import styles from "../../styles/Invoice.module.css";
+import { calcularCostoTotal } from "./Calculations";
 
-// const Invoice = ({ formData }) => {
-//   const costoDiario = 35000;
-//   let costoAlquiler = costoDiario * formData.numero_dias_alquiler;
+const Invoice = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
-//   // Aplicar incremento por servicio de domicilio
-//   if (formData.tipo_servicio === 'Fuera de la ciudad') {
-//     costoAlquiler += costoAlquiler * 0.05; // Incremento del 5%
-//   }
+  const nombre = queryParams.get("nombre");
+  const email = queryParams.get("email");
+  const telefono = queryParams.get("telefono");
+  const tipoServicio = queryParams.get("tipo_servicio");
+  const numeroAlquilerEquipos = queryParams.get("numero_alquiler_equipos");
+  const numeroDiasAlquiler = queryParams.get("numero_dias_alquiler");
+  const numeroDiasAdicionales = queryParams.get("numero_dias_adicionales");
 
-//   // Aplicar descuento adicional por alquiler dentro del establecimiento
-//   if (formData.tipo_servicio === 'Dentro del establecimiento') {
-//     costoAlquiler -= costoAlquiler * 0.05; // Descuento del 5%
-//   }
+  const { costoBase, costoAdicional, costoTotal, costoDomicilio } =
+    calcularCostoTotal(
+      tipoServicio,
+      numeroAlquilerEquipos,
+      numeroDiasAlquiler,
+      numeroDiasAdicionales
+    );
 
-//   // Calcular costo por días adicionales y aplicar descuento
-//   const costoDiasAdicionales = costoDiario * formData.numero_dias_adicionales;
-//   costoAlquiler += costoDiasAdicionales;
+  return (
+    <div className={styles.contenedor}>
+      <div className={styles.rows}>
+        <h1>Factura</h1>
+        <div className={styles.info}>
+          <h4>Información personal</h4>
+          <p className="titulo_negrita">Nombre: {nombre}</p>
+          <p>Email: {email}</p>
+          <p>Teléfono: {telefono}</p>
+        </div>
+        <div className={styles.info}>
+          <h4>Información del servicio</h4>
+          <p>Tipo de servicio: {tipoServicio}</p>
+          <p>Número de equipos: {numeroAlquilerEquipos}</p>
+          <p>Número de días de alquiler: {numeroDiasAlquiler}</p>
+          <p>Número de días adicionales: {numeroDiasAdicionales}</p>
+          <p>Costo domicilio: ${costoDomicilio}</p>
+          <p>Costo base: ${costoBase}</p>
+          <p>Costo adicional: ${costoAdicional}</p>
+          <br />
+          <hr />
+          <p>Costo total: ${costoTotal}</p>
+        </div>
+      </div>
+      <div
+        style={{
+          textAlign: "center", // Para centrar el texto
+          marginTop: "1rem",
+        }}
+      >
+        <Link
+          to="/"
+          style={{
+            display: "inline-block",
+            width: "40%",
+            border: "none",
+            padding: "0.62rem",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "0.99rem",
+            fontWeight: "500",
+            backgroundColor: "#6f6df4",
+            color: "#fff",
+            textDecoration: "none",
+            textAlign: "center",
+            transition: "background-color 0.3s ease-in-out",
+          }}
+        >
+          Volver
+        </Link>
+      </div>
 
-//   // Aplicar descuento por días adicionales (2% de descuento por día)
-//   costoAlquiler -= costoDiasAdicionales * 0.02;
+      {/* <div className={styles.backButton}>
+            <button>
+               <Link to="/">
+                  Volver
+               </Link>
+            </button>
+         </div> */}
+    </div>
+  );
+};
 
-//   return (
-//     <div>
-//       <h1>Factura</h1>
-//       <p>Nombre: {formData.nombre}</p>
-//       <p>Correo Electrónico: {formData.email}</p>
-//       <p>Tipo de Servicio: {formData.tipo_servicio}</p>
-//       <p>Número de equipos alquilados: {formData.numero_alquiler_equipos}</p>
-//       <p>Número de días de alquiler: {formData.numero_dias_alquiler}</p>
-//       <p>Número de días adicionales: {formData.numero_dias_adicionales}</p>
-//       <p>Costo total: ${costoAlquiler.toFixed(2)}</p>
-//     </div>
-//   );
-// };
-
-// export default Invoice;
+export default Invoice;

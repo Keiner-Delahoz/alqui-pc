@@ -1,33 +1,48 @@
-import "../../styles/Form.css";
+import { useNavigate } from 'react-router-dom';
+import "../../styles/Rental_form.css";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import validateForm from './Form_validation.js';
+import Tittle from '../Tittle/Tittle'
+
 
 const Rental_form = () => {
 
+   const navigate = useNavigate() // Obtiene el objeto history para la navegación
+
+   const handleSubmit = (values, { resetForm }) => {
+     resetForm();
+     console.log('Formulario enviado');
+     console.log(values);
+
+     // Redirige a la ruta '/factura' después de enviar el formulario
+     navigate(`/invoice?nombre=${values.nombre}&email=${values.email}&telefono=${values.telefono}&tipo_servicio=${values.tipo_servicio}&numero_alquiler_equipos=${values.numero_alquiler_equipos}&numero_dias_alquiler=${values.numero_dias_alquiler}&numero_dias_adicionales=${values.numero_dias_adicionales}`);
+   };
+
    return (
       <div className="container">
-         <h1>ALQUI-PC</h1>
-         <p>Empresa de alquiler de computadores, alquilamos su pc.</p>
-
          <Formik
-            initialValues={{
-               nombre: "",
-               email: "",
-               telefono: "",
-               tipo_servicio: "", // Puedes establecer un valor predeterminado aquí
-               numero_alquiler_equipos: "",
-               numero_dias_alquiler: "",
-               numero_dias_adicionales: "0"
-            }}
+         initialValues={{
+            nombre: "",
+            email: "",
+            telefono: "",
+            tipo_servicio: "",
+            numero_alquiler_equipos: "",
+            numero_dias_alquiler: "",
+            numero_dias_adicionales: "0"
+         }}
 
-            validate={validateForm}
-            onSubmit={(valores, {resetForm}) => {
-               resetForm();
-               console.log("Formulario enviado")
-               console.log(valores)
-            }}
-         >
-            {({ errors }) => (
+         validate={validateForm}
+         onSubmit={handleSubmit}
+         // onSubmit={(valores, { resetForm }) => {
+         //    resetForm();
+         //    console.log("Formulario enviado")
+         //    console.log(valores)
+
+         // }}
+      >
+         {({ errors }) => (
+            <div>
+               <Tittle />
                <Form className="formulario">
                   <div className="input-group">
                      <div className="row">
@@ -76,9 +91,9 @@ const Rental_form = () => {
                               as="select"
                            >
                               <option value="" disabled>Escoja una opción...</option>
-                              <option value="value1">Dentro de la ciudad</option>
-                              <option value="value2">Fuera de la ciudad</option>
-                              <option value="value3">Dentro del establecimiento</option>
+                              <option value="Dentro de la ciudad">Dentro de la ciudad</option>
+                              <option value="Fuera de la ciudad">Fuera de la ciudad</option>
+                              <option value="Dentro del establecimiento">Dentro del establecimiento</option>
                            </Field>
                            <ErrorMessage name="tipo_servicio" component="div" className="error" />
                         </div>
@@ -135,9 +150,12 @@ const Rental_form = () => {
                      <button type="submit">Continuar</button>
                   </div>
                </Form>
-            )}
-         </Formik>
+            </div>
+
+         )}
+      </Formik>
       </div>
+      
    );
 };
 
