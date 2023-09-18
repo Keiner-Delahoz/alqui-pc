@@ -7,13 +7,10 @@ import './App.css'
 function App() {
 
   return (
-
-   
       <Routes>
          <Route path='/' element={<Form/>}/>
          <Route path='/invoice' element={<Invoice/>}/>
       </Routes>
-   
   )
 }
 

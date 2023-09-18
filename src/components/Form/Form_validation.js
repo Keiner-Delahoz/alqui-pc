@@ -18,8 +18,8 @@ const validateForm = (valores) => {
    //Validación telefono
    if (!valores.telefono) {
       errores.telefono = 'Por favor ingresa un telefono de contacto'
-   } else if (!/^[0-9]+$/.test(valores.telefono) || valores.telefono.length !== 10) {
-      errores.telefono = 'Ingresa un número de teléfono válido de 10 dígitos'
+   } else if (!/^[0-9]+$/.test(valores.telefono) || valores.telefono.length < 10 || valores.telefono.length > 14) {
+      errores.telefono = 'Ingresa un número de teléfono válido entre 10-14 digitos'
    }
 
    //Validación telefono
@@ -37,8 +37,6 @@ const validateForm = (valores) => {
    //Validación de numero de dias de alquiler
    if (!valores.numero_dias_alquiler) {
       errores.numero_dias_alquiler = 'Por favor ingresa el valor de días a alquilar'
-   } else if (valores.numero_alquiler_equipos < 1) {
-      errores.numero_dias_alquiler = 'Mínimo tienen que ser 2 equipos'
    }
 
    //Validación de numero de dias adicionales

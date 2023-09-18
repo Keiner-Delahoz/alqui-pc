@@ -10,41 +10,32 @@ const Rental_form = () => {
    const navigate = useNavigate() // Obtiene el objeto history para la navegación
 
    const handleSubmit = (values, { resetForm }) => {
-     resetForm();
-     console.log('Formulario enviado');
-     console.log(values);
-
-     // Redirige a la ruta '/factura' después de enviar el formulario
-     navigate(`/invoice?nombre=${values.nombre}&email=${values.email}&telefono=${values.telefono}&tipo_servicio=${values.tipo_servicio}&numero_alquiler_equipos=${values.numero_alquiler_equipos}&numero_dias_alquiler=${values.numero_dias_alquiler}&numero_dias_adicionales=${values.numero_dias_adicionales}`);
+      resetForm();
+      
+      // Redirige a la ruta '/factura' después de enviar el formulario
+      navigate(`/invoice?nombre=${values.nombre}&email=${values.email}&telefono=${values.telefono}&tipo_servicio=${values.tipo_servicio}&numero_alquiler_equipos=${values.numero_alquiler_equipos}&numero_dias_alquiler=${values.numero_dias_alquiler}&numero_dias_adicionales=${values.numero_dias_adicionales}`);
    };
 
    return (
       <div className="container">
          <Formik
-         initialValues={{
-            nombre: "",
-            email: "",
-            telefono: "",
-            tipo_servicio: "",
-            numero_alquiler_equipos: "",
-            numero_dias_alquiler: "",
-            numero_dias_adicionales: "0"
-         }}
+            initialValues={{
+               nombre: "",
+               email: "",
+               telefono: "",
+               tipo_servicio: "",
+               numero_alquiler_equipos: "",
+               numero_dias_alquiler: "",
+               numero_dias_adicionales: "0"
+            }}
 
-         validate={validateForm}
-         onSubmit={handleSubmit}
-         // onSubmit={(valores, { resetForm }) => {
-         //    resetForm();
-         //    console.log("Formulario enviado")
-         //    console.log(valores)
-
-         // }}
-      >
-         {({ errors }) => (
-            <div>
-               <Tittle />
-               <Form className="formulario">
-                  <div className="input-group">
+            validate={validateForm}
+            onSubmit={handleSubmit}
+         >
+            {({ errors }) => (
+               <div>
+                  <Tittle />
+                  <Form className="formulario">
                      <div className="row">
                         <div className="column input-box">
                            <label htmlFor="nombre">Nombre:</label>
@@ -98,64 +89,63 @@ const Rental_form = () => {
                            <ErrorMessage name="tipo_servicio" component="div" className="error" />
                         </div>
                      </div>
-                  </div>
 
-                  <div className="row-numbers">
-                     <div className="column input-box">
-                        <label htmlFor="numero_alquiler_equipos">
-                           N° de equipos que desea alquilar:
-                        </label>
-                        <Field
-                           type="number"
-                           id="numero_alquiler_equipos"
-                           name="numero_alquiler_equipos"
-                           placeholder="Ingresa el número de equipos"
-                        />
-                        <ErrorMessage name="numero_alquiler_equipos" component="div" className="error" />
-                        {/* <ErrorMessage name="numero_alquiler_equipos" component={() => (<div className="error">{errors.numero_alquiler_equipos}</div>)} /> */}
-                     </div>
+                     <div className="row-numbers">
+                        <div className="column input-box">
+                           <label htmlFor="numero_alquiler_equipos">
+                              N° de equipos que desea alquilar:
+                           </label>
+                           <Field
+                              type="number"
+                              id="numero_alquiler_equipos"
+                              name="numero_alquiler_equipos"
+                              placeholder="Ingresa el número de equipos"
+                           />
+                           <ErrorMessage name="numero_alquiler_equipos" component="div" className="error" />
+                           {/* <ErrorMessage name="numero_alquiler_equipos" component={() => (<div className="error">{errors.numero_alquiler_equipos}</div>)} /> */}
+                        </div>
 
-                     <div className="column input-box">
-                        <label htmlFor="numero_dias_alquiler">
-                           N° de días que desea tomar el alquiler:
-                        </label>
-                        <Field
-                           type="number"
-                           id="numero_dias_alquiler"
-                           name="numero_dias_alquiler"
-                           placeholder="Ingresa el número de días a alquilar"
-                        />
-                        {/* <div className="error-container">
+                        <div className="column input-box">
+                           <label htmlFor="numero_dias_alquiler">
+                              N° de días que desea tomar el alquiler:
+                           </label>
+                           <Field
+                              type="number"
+                              id="numero_dias_alquiler"
+                              name="numero_dias_alquiler"
+                              placeholder="Ingresa el número de días a alquilar"
+                           />
+                           {/* <div className="error-container">
+                              <ErrorMessage name="numero_dias_alquiler" component="div" className="error" />
+                           </div> */}
+                           {/* <ErrorMessage name="numero_dias_alquiler" component={() => (<div className="error">{errors.numero_dias_alquiler}</div>)} /> */}
                            <ErrorMessage name="numero_dias_alquiler" component="div" className="error" />
-                        </div> */}
-                        {/* <ErrorMessage name="numero_dias_alquiler" component={() => (<div className="error">{errors.numero_dias_alquiler}</div>)} /> */}
-                        <ErrorMessage name="numero_dias_alquiler" component="div" className="error" />
+                        </div>
+
+                        <div className="column input-box">
+                           <label htmlFor="numero_dias_adicionales">
+                              N° de días adicionales que toma el alquiler:
+                           </label>
+                           <Field
+                              type="number"
+                              id="numero_dias_adicionales"
+                              name="numero_dias_adicionales"
+                              placeholder="Ingresa el número de días adicionales"
+                           />
+                           <ErrorMessage name="numero_dias_adicionales" component="div" className="error" />
+                        </div>
                      </div>
 
-                     <div className="column input-box">
-                        <label htmlFor="numero_dias_adicionales">
-                           N° de días adicionales que toma el alquiler:
-                        </label>
-                        <Field
-                           type="number"
-                           id="numero_dias_adicionales"
-                           name="numero_dias_adicionales"
-                           placeholder="Ingresa el número de días adicionales"
-                        />
-                        <ErrorMessage name="numero_dias_adicionales" component="div" className="error" />
+                     <div className="continue-button">
+                        <button type="submit">Continuar</button>
                      </div>
-                  </div>
+                  </Form>
+               </div>
 
-                  <div className="continue-button">
-                     <button type="submit">Continuar</button>
-                  </div>
-               </Form>
-            </div>
-
-         )}
-      </Formik>
+            )}
+         </Formik>
       </div>
-      
+
    );
 };
 

@@ -1,8 +1,8 @@
 .container{
    background-color: #ffffff;
-   width: 70%;
+   width: 68%;
    min-width: 420px;
-   padding: 35px 45px;
+   padding: 25px 35px;
    transform: translate(-50%,-50%);
    position: absolute;
    left: 50%;
@@ -11,10 +11,41 @@
    box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
 }
 
+.row{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-gap: 20px; /* Añade espacio horizontal entre los elementos */
+    margin: 0 10px;
+}
+
+.row input {
+   margin-right: 10px; /* Ajusta el valor según la cantidad de espacio que desees */
+ }
+
+.row-numbers {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 20px;
+   margin: 0 10px;
+   grid-gap: 0px 20px; /*establecer el espacio (o separación) entre las filas y las columnas en una cuadrícula (grid) 0px filas 20px columnas */
+   justify-content: space-between; /* Distribuye los elementos uniformemente */
+}
+
+.row-numbers .column {
+   flex: 1; /* Todos los elementos dentro de .row-numbers tendrán el mismo ancho */
+   min-width: 100px;
+}
+
+.row-numbers label {
+   white-space: nowrap; /* Evita que el texto de los labels se rompa en múltiples líneas */
+   overflow: hidden; /* Oculta cualquier texto que desborde el tamaño fijo */
+   text-overflow: ellipsis; /* Muestra "..." si el texto de los labels es demasiado largo */
+}
+
 .input-box {
    display: flex;
    flex-direction: column;
-   margin-bottom: 1.1rem;
+   margin-bottom: 1.2rem;
 }
 
 .input-box input {
@@ -39,7 +70,7 @@
 
 /* Agrega estilos para el select */
 .input-box select {
-   padding: 11px 10px;
+   padding: 10px 10px;
    border-radius: 5px;
    border: 1.2px solid #c4cae0;
    margin-top: 5px;
@@ -57,86 +88,6 @@
    border-color: #c4cae0; /* Cambia el color del borde al enfocar */
 }
 
-h1{
-    font-size: 30px;
-    text-align: center;
-    color: #1c093c;
-}
-p{
-    position: relative;
-    margin: 0.75em;
-    width: 100%;
-    text-align: center;
-    color: #606060;
-    font-size: 14px;
-    font-weight: 400;
-}
-
-form{
-    width: 100%;
-    position: relative;
-    margin: 30px auto 0 auto;
-}
-
-.row{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-    grid-gap: 20px 30px;
-    margin-bottom: 30px;
-}
-
-.row-numbers {
-   display: flex;
-   margin-bottom: 1.1rem;
-   align-items: flex-start;
-   margin-bottom: 30px;
-}
-
-.column.input-box {
-   flex: 1; /* Los input ocuparán el mismo espacio en la fila */
-   margin: 0 10px; /* Espaciado horizontal entre los input */
-}
-
-/* Estilo para el input en estado hover */
-.column.input-box input:hover {
-   background-color: rgba(211, 211, 248, 0.3);
-}
-
-/* Estilo para el input enfocado */
-.column.input-box input:focus-visible {
-   outline: 1px solid #6c63ff;
-}
-
-/* Estilo para el label */
-.column.input-box label {
-   font-size: 0.80rem;
-   font-weight: 600;
-   color: #000000c0;
-}
-
-label{
-    color: #1c093c;
-    font-size: 14px;
-}
-textarea,
-input{
-    width: 100%;
-    font-weight: 400;
-    padding: 8px 10px;
-    border-radius: 5px;
-    border: 1.2px solid #c4cae0;
-    margin-top: 5px;
-}
-textarea{
-    resize: none;
-}
-textarea:focus,
-input:focus{
-    outline: none;
-    border-color: #6f6df4;
-}
-
 .continue-button {
    text-align: center;
 }
@@ -152,6 +103,7 @@ input:focus{
    font-weight: 500;
    background-color: #6f6df4;
    color: #fff;
+   transition: background-color 0.2s ease-in-out;
 }
 
 .continue-button button:hover {
@@ -162,9 +114,12 @@ input:focus{
 	color: #e92b2d;
 	font-weight: 600;
 	font-size: 12px;
-   margin-top: 0.5rem;
+   margin-top: 0.1rem;
 }
 
-
-
-
+@media (max-width: 1044px) {
+   .row {
+     grid-template-columns: 1fr; /* Cambia a una sola columna */
+     grid-gap: 0; /* Elimina el espacio horizontal entre los elementos en una sola columna */
+   }
+ }

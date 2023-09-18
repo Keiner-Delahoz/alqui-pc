@@ -1,6 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
-import styles from "../../styles/Invoice.module.css";
+import "../../styles/Invoice.css";
 import { calcularCostoTotal } from "./Calculations";
+import { validation_message } from "./Validaton_message";
 
 const Invoice = () => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const Invoice = () => {
   const numeroDiasAlquiler = queryParams.get("numero_dias_alquiler");
   const numeroDiasAdicionales = queryParams.get("numero_dias_adicionales");
 
-  const { costoBase, costoAdicional, costoTotal, costoDomicilio } =
+  const { costoBase, costoAdicional, costoTotal } =
     calcularCostoTotal(
       tipoServicio,
       numeroAlquilerEquipos,
@@ -22,65 +23,39 @@ const Invoice = () => {
       numeroDiasAdicionales
     );
 
-  return (
-    <div className={styles.contenedor}>
-      <div className={styles.rows}>
-        <h1>Factura</h1>
-        <div className={styles.info}>
-          <h4>Información personal</h4>
-          <p className="titulo_negrita">Nombre: {nombre}</p>
-          <p>Email: {email}</p>
-          <p>Teléfono: {telefono}</p>
-        </div>
-        <div className={styles.info}>
-          <h4>Información del servicio</h4>
-          <p>Tipo de servicio: {tipoServicio}</p>
-          <p>Número de equipos: {numeroAlquilerEquipos}</p>
-          <p>Número de días de alquiler: {numeroDiasAlquiler}</p>
-          <p>Número de días adicionales: {numeroDiasAdicionales}</p>
-          <p>Costo domicilio: ${costoDomicilio}</p>
-          <p>Costo base: ${costoBase}</p>
-          <p>Costo adicional: ${costoAdicional}</p>
-          <br />
-          <hr />
-          <p>Costo total: ${costoTotal}</p>
-        </div>
-      </div>
-      <div
-        style={{
-          textAlign: "center", // Para centrar el texto
-          marginTop: "1rem",
-        }}
-      >
-        <Link
-          to="/"
-          style={{
-            display: "inline-block",
-            width: "40%",
-            border: "none",
-            padding: "0.62rem",
-            borderRadius: "5px",
-            cursor: "pointer",
-            fontSize: "0.99rem",
-            fontWeight: "500",
-            backgroundColor: "#6f6df4",
-            color: "#fff",
-            textDecoration: "none",
-            textAlign: "center",
-            transition: "background-color 0.3s ease-in-out",
-          }}
-        >
-          Volver
-        </Link>
-      </div>
+    const {mensajeCostoBase, mensajeCostoAdicional} = validation_message(tipoServicio,costoAdicional);
+    console.log(tipoServicio)
+    console.log(mensajeCostoBase)
 
-      {/* <div className={styles.backButton}>
-            <button>
-               <Link to="/">
-                  Volver
-               </Link>
-            </button>
-         </div> */}
+  return (
+    <div className="contenedor">
+      <div className="rows">
+        <h1>Factura</h1>
+        <div className="info">
+          <h4 className="subtittle-info">Información personal <hr/></h4>
+          <p className="titulo_negrita"><strong>Nombre:</strong> {nombre}</p>
+
+          <p><strong>Email:</strong> {email}</p>
+          <p><strong>Teléfono:</strong> {telefono}</p>
+        </div>
+        <div className="info">
+          <h4 className="subtittle-info">Información del servicio<hr/></h4>
+          <p><strong>Tipo de servicio:</strong> {tipoServicio}</p>
+          <p><strong>Número de equipos:</strong> {numeroAlquilerEquipos}</p>
+          <p><strong>Número de días de alquiler:</strong> {numeroDiasAlquiler}</p>
+          <p><strong>Número de días adicionales:</strong> {numeroDiasAdicionales}</p>
+          {/* <p><strong>Costo domicilio:</strong> $ {costoDomicilio}</p> */}
+          <p><strong>{mensajeCostoBase}</strong> ${costoBase}</p>
+          <p><strong>{mensajeCostoAdicional}</strong> $ {costoAdicional}</p>
+          <hr />
+        </div>
+        <div className="info">
+         <p><strong>Costo total:</strong> ${costoTotal}</p>
+         </div>  
+      </div>
+      <div className="button-container">
+        <Link to="/" className="button-link"> Volver </Link>
+      </div>
     </div>
   );
 };

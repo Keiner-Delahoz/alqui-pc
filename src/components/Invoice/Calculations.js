@@ -11,13 +11,11 @@ export const calcularCostoTotal = (tipoServicio, numeroAlquilerEquipos, numeroDi
  
    const costoAdicional = numeroDiasAdicionales * valorPorDia * numeroAlquilerEquipos * 0.98;
    const costoTotal = costoBase + costoAdicional;
-   const costoDomicilio = costoBase * 0.05;
  
    return {
      costoBase,
      costoAdicional,
      costoTotal,
-     costoDomicilio
    };
- };
+};
  
